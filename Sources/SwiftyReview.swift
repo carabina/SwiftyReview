@@ -10,20 +10,26 @@ import Foundation
 import StoreKit
 
 open class SwiftyReview: NSObject {
-	// UserDefaults dictionary keys
-	fileprivate let appLaunchCountSetting = "appLaunchCount"
+	/// UserDefaults dictionary keys
+	fileprivate var appLaunchCountSetting = ""
 
-	// Minimum number of App Launches that we should have until we ask for review
-	fileprivate var minimumAppLaunchCount = 5
-
+	/// Minimum number of App Launches that we should have until we ask for review
+	fileprivate var minimumAppLaunchCount = 0
+	
+	/// Setup SwiftyReview
+	/// - parameter count: Show the review dialog every # of app launches if allowed.
 	open func setup(count: Int = 5) {
 		minimumAppLaunchCount = count
+		let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+		appLaunchCountSetting = "appLaunchCount-"+version!
 		incrementAppLaunchCount()
 	}
 
+	/// Incerment the app launch count, called by `setup()`.
 	fileprivate func incrementAppLaunchCount() {
 		let UD = UserDefaults()
 		let launches = getAppLaunchCount() + 1
+		print("\(Date()) [Swifty Review] - App Launch Count: \(launches) / Minimum Launch Count: \(minimumAppLaunchCount)")
 		UD.setValuesForKeys([appLaunchCountSetting: launches])
 		UD.synchronize()
 	}
@@ -34,25 +40,25 @@ open class SwiftyReview: NSObject {
 		let savedAppLaunchCount = UD.value(forKey: appLaunchCountSetting)
 
 		var launches = 0
-		if(savedAppLaunchCount != nil) {
+		if (savedAppLaunchCount != nil) {
 			launches = savedAppLaunchCount as! Int
 		}
 
-		print("Swifty Review: App Launch Count = \(launches)")
 		return launches
 	}
 
+	/// Show the review dialog if the app has been launched enough times and it is allowed.
 	open func showReview() {
 		let launches = getAppLaunchCount()
-		print("Swifty Review: Show review")
+		let countMatch = launches % minimumAppLaunchCount
 
-		if(launches > minimumAppLaunchCount) {
+		if (countMatch == 0) {
 			if #available(iOS 10.3, *) {
-				print("Swifty Review: Review requested")
+				print("\(Date()) [Swifty Review] - Review requested")
 				SKStoreReviewController.requestReview()
 			}
 		} else {
-			print("Swifty Review: Not enough to request review")
+			print("\(Date()) [Swifty Review] - Not enough launches to request review")
 		}
 	}
 }

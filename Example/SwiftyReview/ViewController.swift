@@ -10,7 +10,7 @@ import UIKit
 import SwiftyReview
 
 class ViewController: UIViewController {
-
+	var swiftyReview: SwiftyReview = SwiftyReview()
     override func viewDidLoad() {
         super.viewDidLoad()
 		swiftyReview.setup(count: 5)
