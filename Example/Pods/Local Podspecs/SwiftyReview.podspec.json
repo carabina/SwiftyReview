@@ -1,0 +1,22 @@
+{
+  "name": "SwiftyReview",
+  "version": "0.1.0",
+  "summary": "A short description of SwiftyReview.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/eaconner/SwiftyReview",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "eaconner": "eric@ericconnerapps.com"
+  },
+  "source": {
+    "git": "https://github.com/eaconner/SwiftyReview.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SwiftyReview/Classes/**/*"
+}
