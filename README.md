@@ -1,6 +1,6 @@
 # SwiftyReview
 
-[![CI Status](http://img.shields.io/travis/eaconner/SwiftyReview.svg?style=flat)](https://travis-ci.org/eaconner/SwiftyReview)
+[![CI Status](http://img.shields.io/travis/EricConnerApps/SwiftyReview.svg?style=flat)](https://travis-ci.org/eaconner/SwiftyReview)
 [![Version](https://img.shields.io/cocoapods/v/SwiftyReview.svg?style=flat)](http://cocoapods.org/pods/SwiftyReview)
 [![License](https://img.shields.io/cocoapods/l/SwiftyReview.svg?style=flat)](http://cocoapods.org/pods/SwiftyReview)
 [![Platform](https://img.shields.io/cocoapods/p/SwiftyReview.svg?style=flat)](http://cocoapods.org/pods/SwiftyReview)
